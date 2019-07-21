@@ -41,17 +41,37 @@ from typing import List
 import matplotlib.pyplot as plt
 
 class Solution:
-    def flipAndInvertImage(self, A: List[List[int]]) -> List[List[int]]:
+
+     def turnZ(self,i:int) -> int:
+          if i == 0:
+               return 1
+          else:
+               return 0
+
+
+
+     def flipAndInvertImage(self, A: List[List[int]]) -> List[List[int]]:
+        
+        fig=plt.figure()
+        ax1 = fig.add_subplot(1,2,1)
+        ax2 = fig.add_subplot(1,2,2)
+        ax1.matshow(A,cmap=plt.cm.gray)  
+        print(A)
+        
+        result = []
+        for i in range(len(A)) :
+             A[i] = [self.turnZ(t) for t in A[i]]
+             A[i].reverse()
         print(A)
 
-        
-        imgplot = plt.matshow(A,cmap=plt.cm.gray)
-        
+
+        ax2.matshow(A,cmap=plt.cm.gray)
         plt.show()
-        return []
+        return A
 
 
 test = Solution()
 tA = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
 strt = test.flipAndInvertImage(tA)
 print(strt)
+
